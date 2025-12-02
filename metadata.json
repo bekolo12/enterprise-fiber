@@ -1,0 +1,5 @@
+{
+  "name": "Support Analytics Dashboard",
+  "description": "A real-time, glassmorphic analytics dashboard for support ticket metrics, visualizing resolution times, SLA compliance, and agent performance.",
+  "requestFramePermissions": []
+}
