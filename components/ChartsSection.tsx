@@ -73,7 +73,7 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({ data }) => {
                 <YAxis stroke="#9ca3af" tick={{ fill: '#9ca3af', fontSize: 12 }} />
                 <Tooltip content={<CustomTooltip unit="min" />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
                 <Bar dataKey="resolutionTime" fill="#06b6d4" radius={[4, 4, 0, 0]}>
-                  {timeData.map((entry, index) => (
+                  {timeData.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Bar>
@@ -99,7 +99,7 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({ data }) => {
                   paddingAngle={5}
                   dataKey="sla"
                 >
-                  {slaData.map((entry, index) => (
+                  {slaData.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke="rgba(0,0,0,0)" />
                   ))}
                 </Pie>
@@ -148,7 +148,7 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({ data }) => {
                     ) : null;
                   }}
                 >
-                  {ticketData.map((entry, index) => (
+                  {ticketData.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke="rgba(0,0,0,0)" />
                   ))}
                 </Pie>
