@@ -20,6 +20,9 @@ const App: React.FC = () => {
   const [selectedMonth, setSelectedMonth] = useState("October 2025");
   const [isMonthOpen, setIsMonthOpen] = useState(false);
 
+  // Determine if we are viewing projected data
+  const isProjected = selectedMonth !== "October 2025";
+
   // Fetch data based on selected month
   const processedData = useMemo(() => getDataForMonth(selectedMonth), [selectedMonth]);
 
@@ -60,15 +63,26 @@ const App: React.FC = () => {
             <BarChart2 className="mr-3 text-cyan-400" size={36} />
             Support Analytics Dashboard
           </h1>
-          <p className="text-gray-400 mt-2 ml-1">Real-time performance metrics and analysis</p>
+          <p className="text-gray-400 mt-2 ml-1">
+            {isProjected ? (
+              <span className="text-amber-400 font-medium flex items-center">
+                <AlertTriangle className="w-4 h-4 mr-2" />
+                Viewing Projected Data for {selectedMonth}
+              </span>
+            ) : (
+              "Real-time performance metrics and analysis"
+            )}
+          </p>
         </div>
         <div className="mt-4 md:mt-0 flex items-center space-x-4">
-          <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 shadow-lg">
+          <div className={`flex items-center space-x-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 shadow-lg ${isProjected ? 'border-amber-500/30' : ''}`}>
             <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isProjected ? 'bg-amber-400' : 'bg-green-400'}`}></span>
+              <span className={`relative inline-flex rounded-full h-3 w-3 ${isProjected ? 'bg-amber-500' : 'bg-green-500'}`}></span>
             </span>
-            <span className="text-sm text-gray-200 font-medium">Live Data</span>
+            <span className={`text-sm font-medium ${isProjected ? 'text-amber-100' : 'text-gray-200'}`}>
+              {isProjected ? "Projected Data" : "Live Data"}
+            </span>
           </div>
           
           {/* Month Dropdown */}
